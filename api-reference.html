@@ -14,7 +14,7 @@
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-K7URE6B4.js"></script>
-    <script src="dist/sidebar_items-EEFDCA36.js"></script>
+    <script src="dist/sidebar_items-C3AB4E68.js"></script>
     <script src="docs_config.js"></script>
     <script async src="dist/html-PVRIOB7F.js"></script>
 
@@ -254,6 +254,8 @@ This module will potentially augment db operations with transaction wrappers.</p
     <a href="Plausible.Auth.ApiKey.html" translate="no">Plausible.Auth.ApiKey</a>
 
   </div>
+
+    <div class="summary-synopsis"><p>There are two kinds of API keys, legacy API keys and team-scoped API keys.</p></div>
 
 </div>
 <div class="summary-row">
@@ -1046,6 +1048,16 @@ this allows for mocking DNS lookups in tests.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="Plausible.Event.SystemEvents.html" translate="no">Plausible.Event.SystemEvents</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>System events are events that require at least one form of special treatment by the application.
+They are distinguished by event name.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="Plausible.Exports.html" translate="no">Plausible.Exports</a>
 
   </div>
@@ -1139,15 +1151,6 @@ creating and deleting funnel definitions.</p></div>
     <a href="Plausible.Goals.html" translate="no">Plausible.Goals</a>
 
   </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Plausible.Goals.SystemGoals.html" translate="no">Plausible.Goals.SystemGoals</a>
-
-  </div>
-
-    <div class="summary-synopsis"><p>This module contains logic for special goals</p></div>
 
 </div>
 <div class="summary-row">
@@ -1469,7 +1472,7 @@ are uniformly either buffered in batches (to Clickhouse) or dropped
 
   </div>
 
-    <div class="summary-synopsis"><p>Sets up telemetry for remote calls to persistor via <a href="https://hexdocs.pm/finch/0.19.0/Finch.Telemetry.html"><code class="inline">Finch.Telemetry</code></a> events.</p></div>
+    <div class="summary-synopsis"><p>Sets up telemetry for remote calls to persistor via <a href="https://hexdocs.pm/finch/0.20.0/Finch.Telemetry.html"><code class="inline">Finch.Telemetry</code></a> events.</p></div>
 
 </div>
 <div class="summary-row">
@@ -1685,13 +1688,11 @@ methods and whether v1 is used on the site.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="Plausible.OpenTelemetry.Sampler.html" translate="no">Plausible.OpenTelemetry.Sampler</a>
+    <a href="Plausible.OpenTelemetry.Logger.html" translate="no">Plausible.OpenTelemetry.Logger</a>
 
   </div>
 
-    <div class="summary-synopsis"><p><a href="https://hexdocs.pm/opentelemetry/readme.html#samplers">Custom OpenTelemetry sampler</a>
-implementation that ignores particular traces to reduce noise. Ingestion
-HTTP requests and queries to Oban tables are ignored, for example.</p></div>
+    <div class="summary-synopsis"><p>Telemetry handler that adds the OpenTelemetry trace_id to Logger metadata.</p></div>
 
 </div>
 <div class="summary-row">
@@ -2151,11 +2152,31 @@ with one of the following policy markers</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="Plausible.Site.TrackerScriptCache.html" translate="no">Plausible.Site.TrackerScriptCache</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Caches the full tracker script.
+Must be refreshed whenever the TrackerScriptConfiguration associated with the script changes.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="Plausible.Site.TrackerScriptConfiguration.html" translate="no">Plausible.Site.TrackerScriptConfiguration</a>
 
   </div>
 
     <div class="summary-synopsis"><p>Schema for tracker script configuration</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plausible.Site.TrackerScriptIdCache.html" translate="no">Plausible.Site.TrackerScriptIdCache</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Cache for tracker script IDs to avoid excessive database lookups when the
+script API endpoint is bombarded with random IDs.</p></div>
 
 </div>
 <div class="summary-row">
@@ -2268,6 +2289,17 @@ with one of the following policy markers</p></div>
   </div>
 
     <div class="summary-synopsis"><p>Module for querying user defined 'custom properties'.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plausible.Stats.Dashboard.QueryParser.html" translate="no">Plausible.Stats.Dashboard.QueryParser</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Parses a dashboard query string into <code class="inline">%ParsedQueryParams{}</code>. Note that
+<code class="inline">metrics</code> and <code class="inline">dimensions</code> do not exist at this step yet, and are expected
+to be filled in by each specific report.</p></div>
 
 </div>
 <div class="summary-row">
@@ -2400,7 +2432,7 @@ for dimensions, filters and metrics used in import table queries</p></div>
 
   </div>
 
-    <div class="summary-synopsis"><p>Deprecated module. See QueryParser for list of valid dimensions</p></div>
+    <div class="summary-synopsis"><p>Deprecated module. See ApiQueryParser for list of valid dimensions</p></div>
 
 </div>
 <div class="summary-row">
@@ -2829,6 +2861,16 @@ transitions, including persistence options.</p></div>
     <div class="summary-synopsis"><p>Currently only supports post request, it's a drop-in replacement
 for our exvcr usage that wasn't ever needed (e.g. we had no way to
 re-record the cassettes anyway).</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Plausible.Test.Support.Sandbox.html" translate="no">Plausible.Test.Support.Sandbox</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Prevent background processes from interfering with tests 
+(e.g. exiting before properly returning the connection) by allowing them to access sandbox</p></div>
 
 </div>
 <div class="summary-row">
@@ -3815,6 +3857,24 @@ and the number of steps they have.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="PlausibleWeb.Live.GoalSettings.PropertyPairInput.html" translate="no">PlausibleWeb.Live.GoalSettings.PropertyPairInput</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>LiveComponent for a property name + value ComboBox pair.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="PlausibleWeb.Live.GoalSettings.PropertyPairs.html" translate="no">PlausibleWeb.Live.GoalSettings.PropertyPairs</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>LiveComponent for managing multiple custom property name + value pairs</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="PlausibleWeb.Live.ImportsExportsSettings.html" translate="no">PlausibleWeb.Live.ImportsExportsSettings</a>
 
   </div>
@@ -4302,6 +4362,15 @@ serves as a comprehensive health check</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="PlausibleWeb.Plugins.API.Schemas.Goal.CustomProps.html" translate="no">PlausibleWeb.Plugins.API.Schemas.Goal.CustomProps</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Reusable OpenAPI schema definitions for Custom Properties in Goals</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="PlausibleWeb.Plugins.API.Schemas.Goal.DeleteBulkRequest.html" translate="no">PlausibleWeb.Plugins.API.Schemas.Goal.DeleteBulkRequest</a>
 
   </div>
@@ -4775,15 +4844,6 @@ Plugins API Tokens lookup.</p></div>
   </div>
 
     <div class="summary-synopsis"><p>Plug to serve the Plausible tracker script.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="PlausibleWeb.TrackerScriptCache.html" translate="no">PlausibleWeb.TrackerScriptCache</a>
-
-  </div>
-
-    <div class="summary-synopsis"><p>Cache for tracker script.</p></div>
 
 </div>
 <div class="summary-row">
